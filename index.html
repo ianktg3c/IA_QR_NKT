@@ -3,51 +3,157 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#12304a">
-  <title>Download IA</title>
+  <meta name="theme-color" content="#080b78">
+  <title>Get the IA app</title>
   <style>
-    :root { color-scheme: light; --navy:#12304a; --blue:#1769aa; --pale:#eef5fa; }
+    :root {
+      --navy: #080b78;
+      --blue: #1459d9;
+      --cyan: #8ce9ef;
+      --ink: #10162c;
+      --muted: #65708a;
+      --line: #e7ebf5;
+    }
     * { box-sizing: border-box; }
     body {
-      margin: 0; min-height: 100vh; display: grid; place-items: center;
-      padding: 24px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(145deg, #eef5fa, #ffffff); color: #172b3a;
+      margin: 0;
+      min-height: 100vh;
+      padding: 26px 16px;
+      display: grid;
+      place-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(140,233,239,.42), transparent 34%),
+        linear-gradient(145deg, #f6fbff 0%, #edf2ff 48%, #ffffff 100%);
     }
-    main {
-      width: min(100%, 440px); text-align: center; background: #fff;
-      border: 1px solid #dce6ee; border-radius: 24px; padding: 34px 26px;
-      box-shadow: 0 14px 40px rgba(18,48,74,.10);
+    .page {
+      width: min(100%, 460px);
+      overflow: hidden;
+      border-radius: 30px;
+      background: #fff;
+      border: 1px solid rgba(8,11,120,.08);
+      box-shadow: 0 24px 70px rgba(8,11,120,.16);
     }
-    .mark {
-      width: 72px; height: 72px; margin: 0 auto 18px; border-radius: 20px;
-      display: grid; place-items: center; background: var(--navy); color: white;
-      font-size: 28px; font-weight: 800; letter-spacing: 1px;
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 32px 26px 30px;
+      color: #fff;
+      background: linear-gradient(145deg, #080b78 0%, #101ba4 55%, #1764e8 100%);
     }
-    h1 { margin: 0 0 8px; font-size: 28px; color: var(--navy); }
-    p { margin: 0 0 24px; line-height: 1.55; color: #536777; }
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::before {
+      width: 260px; height: 260px; right: -115px; top: -130px;
+      background: rgba(140,233,239,.22);
+    }
+    .hero::after {
+      width: 210px; height: 210px; left: -130px; bottom: -145px;
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .brand-row {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 32px;
+    }
+    .app-mark {
+      flex: 0 0 66px; width: 66px; height: 66px; border-radius: 19px;
+      display: grid; place-items: center;
+      color: #fff; font-size: 29px; font-weight: 800; letter-spacing: -2px;
+      background: linear-gradient(135deg, #91e9ed 0%, #4c9cf2 45%, #2434c4 100%);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,.45), 0 8px 24px rgba(0,0,0,.16);
+    }
+    .eyebrow {
+      margin: 0 0 5px; color: #bceef4; text-transform: uppercase;
+      font-size: 11px; letter-spacing: 2px; font-weight: 800;
+    }
+    h1 { margin: 0; font-size: clamp(28px, 7vw, 36px); line-height: 1.08; letter-spacing: -.8px; }
+    .hero-copy {
+      margin: 0; max-width: 320px; color: #e0e9ff;
+      font-size: 16px; line-height: 1.55;
+    }
+    .content { padding: 25px 24px 26px; }
+    .section-title { margin: 0 0 7px; font-size: 19px; font-weight: 800; }
+    .section-copy { margin: 0 0 21px; color: var(--muted); font-size: 14px; line-height: 1.5; }
     .store {
-      display: block; text-decoration: none; margin: 12px 0; padding: 16px 18px;
-      border-radius: 12px; background: var(--navy); color: white; font-weight: 700;
-      border: 2px solid var(--navy); transition: transform .12s ease, background .12s ease;
+      display: flex; align-items: center; gap: 14px;
+      width: 100%; min-height: 76px; padding: 14px 16px; margin: 12px 0;
+      border-radius: 17px; text-decoration: none; color: #fff;
+      background: var(--navy); border: 1px solid var(--navy);
+      box-shadow: 0 7px 16px rgba(8,11,120,.12);
+      transition: transform .15s ease, box-shadow .15s ease;
     }
-    .store.secondary { background: white; color: var(--navy); }
-    .store:focus-visible { outline: 3px solid #70b7f0; outline-offset: 3px; }
-    .store:hover { transform: translateY(-1px); }
-    small { display: block; margin-top: 22px; color: #718391; line-height: 1.45; }
+    .store:hover { transform: translateY(-2px); box-shadow: 0 11px 22px rgba(8,11,120,.18); }
+    .store:focus-visible { outline: 3px solid #59cfe8; outline-offset: 3px; }
+    .store.secondary {
+      color: var(--navy); background: #fff; border-color: #dfe6f4; box-shadow: none;
+    }
+    .store-icon {
+      flex: 0 0 42px; width: 42px; height: 42px; border-radius: 12px;
+      display: grid; place-items: center; background: rgba(255,255,255,.14);
+      font-size: 23px; font-weight: 700;
+    }
+    .secondary .store-icon { background: #edf2ff; }
+    .store-text { display: block; min-width: 0; }
+    .store-kicker { display: block; font-size: 11px; opacity: .78; margin-bottom: 3px; }
+    .store-name { display: block; font-size: 16px; font-weight: 800; }
+    .chevron { margin-left: auto; font-size: 25px; opacity: .8; }
+    .footer {
+      border-top: 1px solid var(--line); padding: 15px 22px 19px;
+      text-align: center; color: #8993a8; font-size: 11px; line-height: 1.5;
+    }
+    @media (max-width: 360px) {
+      .hero { padding: 26px 20px; }
+      .content { padding: 22px 18px; }
+      .app-mark { width: 58px; height: 58px; flex-basis: 58px; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <div class="mark" aria-hidden="true">IA</div>
-    <h1>Get the IA app</h1>
-    <p>Choose your device's app store below to download the app.</p>
-    <a class="store" href="https://play.google.com/store/apps/details?id=se.afaforsakring.ia&pcampaignid=web_share">
-      Get it on Google Play
-    </a>
-    <a class="store secondary" href="https://apps.apple.com/in/app/ia-divergences-in-oh-s/id6443990571">
-      Download on the App Store
-    </a>
-    <small>Opening this page on a phone? Choose the store for your device.</small>
+  <main class="page">
+    <header class="hero">
+      <div class="brand-row">
+        <div class="app-mark" aria-label="IA app logo">IA</div>
+        <div>
+          <p class="eyebrow">IA • App download</p>
+          <h1>Get the IA app</h1>
+        </div>
+      </div>
+      <p class="hero-copy">Choose your device's app store below to download the app.</p>
+    </header>
+
+    <section class="content" aria-labelledby="download-title">
+      <h2 class="section-title" id="download-title">Download the app</h2>
+      <p class="section-copy">Select the store that matches your phone.</p>
+
+      <a class="store" href="https://play.google.com/store/apps/details?id=se.afaforsakring.ia&pcampaignid=web_share">
+        <span class="store-icon" aria-hidden="true">▶</span>
+        <span class="store-text">
+          <span class="store-kicker">ANDROID USERS</span>
+          <span class="store-name">Get it on Google Play</span>
+        </span>
+        <span class="chevron" aria-hidden="true">›</span>
+      </a>
+
+      <a class="store secondary" href="https://apps.apple.com/in/app/ia-divergences-in-oh-s/id6443990571">
+        <span class="store-icon" aria-hidden="true">●</span>
+        <span class="store-text">
+          <span class="store-kicker">IPHONE USERS</span>
+          <span class="store-name">Download on the App Store</span>
+        </span>
+        <span class="chevron" aria-hidden="true">›</span>
+      </a>
+    </section>
+
+    <footer class="footer">
+      IA – Divergences in OH&S<br>
+      Quick and easy reporting
+    </footer>
   </main>
 </body>
 </html>
